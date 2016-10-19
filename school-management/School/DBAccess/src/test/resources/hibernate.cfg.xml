@@ -4,12 +4,12 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
-    <session-factory name="java:/hibernate/SessionFactory">
-        <!-- Database connection settings -->
+    <session-factory>
+        <!-- Database connection settings 
         <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
         <property name="connection.url">jdbc:oracle:thin:@localhost:1521:SCHOOL</property>
         <property name="connection.username">zakir</property>
-        <property name="connection.password">zakir</property>
+        <property name="connection.password">zakir</property>-->
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">100</property>

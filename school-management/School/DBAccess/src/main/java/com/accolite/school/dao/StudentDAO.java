@@ -6,7 +6,14 @@ import com.accolite.school.model.Student;
 
 public interface StudentDAO {
 	
-	public void save(Student student);
+	public void addStudent(Student student);
 	
-	public List<Student> getAllStudents();	
+	public void updateStudent(Student student);
+	
+	public List<Student> listStudents();
+
+	public Student getStudentById(int id);
+
+	public void removeStudent(int id);	
+	
 }

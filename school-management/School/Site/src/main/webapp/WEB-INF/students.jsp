@@ -1,34 +1,118 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page session="false" %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Students</title>
+	<title>Student Page</title>
+	<style type="text/css">
+		.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+		.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+		.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+		.tg .tg-4eph{background-color:#f9f9f9}
+	</style>
 </head>
 <body>
-<section>
-<div class="jumbotron">
-<div class="container">
-<h1>Students</h1>
+<h1>
+	Add a Student
+</h1>
 
-</div>
-</div>
-</section>
-<section class="container">
-<div class="row">
-<div class="col-sm-6 col-md-3">
-<c:forEach items="${students}" var="student">
-					<tr>
-						<td>Name: ${student.name}</br></td>
-						<td>Email: ${student.email}</br></td>
-						<td>Roll No: ${student.roleNo}</br></td>
-						
-					</tr>
-				</c:forEach>
+<c:url var="addAction" value="/student/add" ></c:url>
 
-</div>
-</div>
-
-</section>
+<form:form action="${addAction}" commandName="student">
+<table>
+	<c:if test="${!empty student.name}">
+	<tr>
+		<td>
+			<form:label path="id">
+				<spring:message text="ID"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="id" readonly="true" size="8"  disabled="true" />
+			<form:hidden path="id" />
+		</td> 
+	</tr>
+	</c:if>
+	<tr>
+		<td>
+			<form:label path="name">
+				<spring:message text="Name"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="name" />
+		</td> 
+	</tr>
+	<tr>
+		<td>
+			<form:label path="email">
+				<spring:message text="Email"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="email" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<form:label path="mobile">
+				<spring:message text="Mobile"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="mobile" />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<form:label path="address">
+				<spring:message text="Address"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="address" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<c:if test="${!empty student.name}">
+				<input type="submit"
+					value="<spring:message text="Edit Student"/>" />
+			</c:if>
+			<c:if test="${empty student.name}">
+				<input type="submit"
+					value="<spring:message text="Add Student"/>" />
+			</c:if>
+		</td>
+	</tr>
+</table>	
+</form:form>
+<br>
+<h3>Students List</h3>
+<c:if test="${!empty students}">
+	<table class="tg">
+	<tr>
+		<th width="80">Student ID</th>
+		<th width="120">Student Name</th>
+		<th width="120">Student Email</th>
+		<th width="120">Student Mobile</th>
+		<th width="120">Student Address</th>
+		<th width="60">Edit</th>
+		<th width="60">Delete</th>
+	</tr>
+	<c:forEach items="${students}" var="student">
+		<tr>
+			<td>${student.id}</td>
+			<td>${student.name}</td>
+			<td>${student.email}</td>
+			<td>${student.mobile}</td>
+			<td>${student.address}</td>
+			<td><a href="<c:url value='/edit/${student.id}' />" >Edit</a></td>
+			<td><a href="<c:url value='/remove/${student.id}' />" >Delete</a></td>
+		</tr>
+	</c:forEach>
+	</table>
+</c:if>
 </body>
 </html>

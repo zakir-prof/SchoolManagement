@@ -7,9 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Proxy;
+
 
 
 @Entity
+@Proxy(lazy=false)
 @Table(name="STUDENT")
 public class Student {
 	

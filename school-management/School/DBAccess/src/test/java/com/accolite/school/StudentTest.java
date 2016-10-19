@@ -26,9 +26,9 @@ public class StudentTest {
 		session.close();*/
 		
 		StudentDAO studentDAO = (StudentDAO) context.getBean("studentDAO");
-		studentDAO.save(student);
+		studentDAO.addStudent(student);
 		
-		studentDAO.getAllStudents();
+		studentDAO.listStudents();
 		
 	}
 }
