@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	Sign In:
+	<form >
+		UserName : <input type="email" name="email" id= "email"/>
+		Password : <input type = "password" name="password" id = "password">
+		<input type="submit" name = "submit" onclick="signIn(document.getElementById('email'),
+							document.getElementById('password'))">
+	</form>
+	
+	Register : 
+		<form >
+		UserName : <input type="email" name="email" id= "email"/>
+		Password : <input type = "password" name="password" id = "password">
+		<input type="submit" name = "submit" onclick="register(document.getElementById('email'),
+							document.getElementById('password'))">
+	</form>
+	
+	<script type="text/javascript">
+			function signIn(email,password){
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", "user/validate", false);
+				var body = {"email" : email , "password" : password};
+				xhr.onreadystatechange = function(){
+					if (this.readyState == 4 && this.status == 200) {
+						{
+							if(xhr.responseText == "success")
+								goHome();
+						}
+					}
+				}
+				xhr.send(body);
+			}
+			
+			function register(email,password){
+				var xhr = new XMLHttpRequest();
+				xhr.open("POST", "user/register", false);
+				var body = {"email" : email , "password" : password};
+				xhr.onreadystatechange = function(){
+					if (this.readyState == 4 && this.status == 200) {
+						if(xhr.responseText == "success")
+							goHome();
+				}
+				xhr.send(body);
+			}
+	</script>
+</body>
+</html>
