@@ -12,6 +12,7 @@
             <useTransitiveDependencies>false</useTransitiveDependencies>
             <includes>
                 <include>com.accolite.school:school-site</include>
+                <include>com.accolite.school:school-db-access</include>
             </includes>
         </dependencySet>
     </dependencySets>
