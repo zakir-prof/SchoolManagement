@@ -6,7 +6,7 @@ import com.accolite.school.model.Student;
 
 public interface StudentDAO {
 	
-	public void addStudent(Student student);
+	public long addStudent(Student student);
 	
 	public void updateStudent(Student student);
 	

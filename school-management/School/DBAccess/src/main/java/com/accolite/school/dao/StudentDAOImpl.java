@@ -33,9 +33,11 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Transactional
-	public void addStudent(Student student) {
+	public long addStudent(Student student) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(student);
+		session.flush();
+		return student.getId();
 	}
 	
 	@SuppressWarnings("unchecked")

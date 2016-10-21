@@ -18,10 +18,11 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Transactional
-	public void addStudent(Student p) {
+	public long addStudent(Student p) {
 		p.setClassId(1);
 		p.setTransportId(1);
-		this.studentDAO.addStudent(p);
+		long id = this.studentDAO.addStudent(p);
+		return id;
 	}
 
 	@Transactional
