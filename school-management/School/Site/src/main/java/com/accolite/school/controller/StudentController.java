@@ -24,7 +24,7 @@ public class StudentController {
 		this.studentService = studentService;
 	}
 	
-	@RequestMapping(value = "/students", method = RequestMethod.GET)
+	@RequestMapping(value = "students", method = RequestMethod.GET)
 	public String listStudents(Model model) {
 		model.addAttribute("student", new Student());
 		model.addAttribute("students", this.studentService.listStudents());
