@@ -12,5 +12,4 @@
         <module>DBAccess</module>
 		<module>Site</module>
     </modules>
-	
 </project>
