@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by accolite WSDL-->
+<wsdl:definitions xmlns:ns2="http://www.accolite.com/schemas/school/transport/AckMessage.xsd" xmlns:ns1="http://www.accolite.com/schemas/school/transport/CreateTransportResponse.xsd" xmlns:ns3="http://www.accolite.com/schemas/school/transport/ApplicationHeader.xsd" xmlns:tns="http://xmlns.example.com/1378461311684" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://www.accolite.com/schemas/school/transport/CreateTransportRequest.xsd" xmlns:ns4="http://www.accolite.com/schemas/school/transport/RemoveTransportRequest.xsd" xmlns:ns5="http://www.accolite.com/schemas/school/transport/RemoveTransportResponse.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://xmlns.example.com/1378461311684">
+    <wsdl:types>
+        <xs:schema xmlns:ns1="http://www.accolite.com/schemas/school/transport/CreateTransportRequest.xsd" xmlns:ns0="http://www.accolite.com/schemas/school/transport/ApplicationHeader.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.accolite.com/schemas/school/transport/CreateTransportRequest.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.accolite.com/schemas/school/transport/ApplicationHeader.xsd"/>
+			<xs:element name="School">
+                <xs:complexType>
+                    <xs:sequence>
+                       <xs:element name="name" type="xs:string"/>
+					   <xs:element name="id" type="xs:string"/>
+					   <xs:element name="address" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+			<xs:element name="Driver">
+                <xs:complexType>
+                    <xs:sequence>
+					   <xs:element name="minimum_age" type="xs:int"/>
+					   <xs:element name="minimum_exp" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+			<xs:element name="Transport">
+                <xs:complexType>
+                    <xs:sequence>
+                       <xs:element name="type" type="xs:string"/>
+					   <xs:element name="rentalStartDate" type="xs:date"/>
+					   <xs:element name="seats" type="xs:int"/>
+					   <xs:element name="contract" type="xs:int"/>
+					   <xs:element ref="ns1:Driver" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+			<xs:element name="AdditionalInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Key" type="xs:string"/>
+						<xs:element name="Value" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreateTransportRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns0:ApplicationHeader"/>
+                        <xs:element name="DataHeader">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element ref="ns1:School"/>
+									<xs:element ref="ns1:Transport"/>
+									<xs:element ref="ns1:AdditionalInfo" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							 </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns:ns1="http://www.accolite.com/schemas/school/transport/CreateTransportResponse.xsd" xmlns:ns0="http://www.accolite.com/schemas/school/transport/AckMessage.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.accolite.com/schemas/school/transport/CreateTransportResponse.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.accolite.com/schemas/school/transport/AckMessage.xsd"/>
+            <xs:element name="AdditionalInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:Key"/>
+                        <xs:element ref="ns1:Value"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CreateTransportResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ResponseHeader" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+									<xs:element name="status">
+									  <xs:simpleType>
+										<xs:restriction base="xs:string">
+										  <xs:enumeration value="ACCEPTED"/>
+										  <xs:enumeration value="REJECTED"/>
+										</xs:restriction>
+									  </xs:simpleType>
+									</xs:element> 
+									<xs:element name="message" type="xs:string" minOccurs="0"/>
+                                    <xs:element name="reference" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element ref="ns0:AckMessage"/>
+                        <xs:element ref="ns1:AdditionalInfo" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Key" type="xs:string"/>
+            <xs:element name="Value" type="xs:string"/>
+        </xs:schema>
+		<xs:schema xmlns:ns1="http://www.accolite.com/schemas/school/transport/RemoveTransportRequest.xsd" xmlns:ns0="http://www.accolite.com/schemas/school/transport/ApplicationHeader.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.accolite.com/schemas/school/transport/RemoveTransportRequest.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.accolite.com/schemas/school/transport/ApplicationHeader.xsd"/>
+			<xs:element name="School">
+                <xs:complexType>
+                    <xs:sequence>
+                       <xs:element name="name" type="xs:string"/>
+					   <xs:element name="id" type="xs:string"/>
+					   <xs:element name="address" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+			<xs:element name="Transport">
+                <xs:complexType>
+                    <xs:sequence>
+					   <xs:element name="refId" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+			<xs:element name="AdditionalInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Key" type="xs:string"/>
+						<xs:element name="Value" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="RemoveTransportRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns0:ApplicationHeader"/>
+                        <xs:element name="DataHeader">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element ref="ns1:School"/>
+									<xs:element ref="ns1:Transport"/>
+									<xs:element ref="ns1:AdditionalInfo" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							 </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+		 <xs:schema xmlns:ns1="http://www.accolite.com/schemas/school/transport/RemoveTransportResponse.xsd" xmlns:ns0="http://www.accolite.com/schemas/school/transport/AckMessage.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.accolite.com/schemas/school/transport/RemoveTransportResponse.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.accolite.com/schemas/school/transport/AckMessage.xsd"/>
+            <xs:element name="AdditionalInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:Key"/>
+                        <xs:element ref="ns1:Value"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="RemoveTransportResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ResponseHeader" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+									<xs:element name="status">
+									  <xs:simpleType>
+										<xs:restriction base="xs:string">
+										  <xs:enumeration value="ACCEPTED"/>
+										  <xs:enumeration value="REJECTED"/>
+										</xs:restriction>
+									  </xs:simpleType>
+									</xs:element> 
+									<xs:element name="message" type="xs:string" minOccurs="0"/>
+                                    <xs:element name="reference" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element ref="ns0:AckMessage"/>
+                        <xs:element ref="ns1:AdditionalInfo" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Key" type="xs:string"/>
+            <xs:element name="Value" type="xs:string"/>
+        </xs:schema>
+        <xs:schema xmlns="http://www.accolite.com/schemas/school/transport/AckMessage.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.accolite.com/schemas/school/transport/AckMessage.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="AckMessage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="MessageCode" type="xs:boolean"/>
+                        <xs:element name="MessageDescription" type="xs:string" minOccurs="0"/>
+                        <xs:element name="ErrorCode" type="xs:string" minOccurs="0"/>
+                        <xs:element name="ErrorType" type="xs:string" minOccurs="0"/>
+                        <xs:element name="ErrorDescription" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns="http://www.accolite.com/schemas/school/transport/ApplicationHeader.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.accolite.com/schemas/school/transport/ApplicationHeader.xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="ApplicationHeader">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="RequestedSystem" type="xs:string"/>
+                        <xs:element name="RetryLimit" type="xs:string" minOccurs="0"/>
+                        <xs:element name="RequestedDate" type="xs:string" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="Transport-Service-HTTPS">
+        <wsdl:port name="OpTransportServiceEndpoint0" binding="tns:OpTransportServiceEndpoint0Binding">
+            <soap:address location="https://localhost:9130/TransportService"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="OpTransportService">
+        <wsdl:operation name="OpCreateTransportService">
+            <wsdl:input message="tns:CreateTransportRequest"/>
+            <wsdl:output message="tns:CreateTransportResponse"/>
+            <wsdl:fault name="fault1" message="tns:TransportFault"/>
+        </wsdl:operation>
+		<wsdl:operation name="OpRemoveTransportService">
+            <wsdl:input message="tns:RemoveTransportRequest"/>
+            <wsdl:output message="tns:RemoveTransportResponse"/>
+            <wsdl:fault name="fault1" message="tns:TransportFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="OpTransportServiceEndpoint0Binding" type="tns:OpTransportService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="OpCreateTransportService">
+            <soap:operation style="document" soapAction="/SharedResources/WSDL's/Transport_V1.0_abstract-service0.serviceagent/OpTransportServiceEndpoint0/OpCreateTransportService"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="CreateTransportRequest"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="CreateTransportResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+		<wsdl:operation name="OpRemoveTransportService">
+            <soap:operation style="document" soapAction="/SharedResources/WSDL's/Transport_V1.0_abstract-service0.serviceagent/OpTransportServiceEndpoint0/OpRemoveTransportService"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="RemoveTransportRequest"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="RemoveTransportResponse"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="CreateTransportRequest">
+        <wsdl:part name="CreateTransportRequest" element="ns0:CreateTransportRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateTransportResponse">
+        <wsdl:part name="CreateTransportResponse" element="ns1:CreateTransportResponse"/>
+    </wsdl:message>
+	<wsdl:message name="RemoveTransportRequest">
+        <wsdl:part name="RemoveTransportRequest" element="ns4:RemoveTransportRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RemoveTransportResponse">
+        <wsdl:part name="RemoveTransportResponse" element="ns5:RemoveTransportResponse"/>
+    </wsdl:message>
+    <wsdl:message name="TransportFault">
+        <wsdl:part name="TransportFault" element="ns2:AckMessage"/>
+    </wsdl:message>
+</wsdl:definitions>
