@@ -4,7 +4,7 @@
   <groupId>com.accolite.schoolmanagement</groupId>
   <artifactId>school-distribution</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>SchoolManagement</name>
+  <name>SchoolDistribution</name>
   <packaging>pom</packaging>
   <url>http://maven.apache.org</url>
   
@@ -29,7 +29,7 @@
                     <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
                         <configuration>
-                            <finalName>SMART</finalName>
+                            <finalName>SCHOOL</finalName>
                             <descriptors>
                                 <!-- <descriptor>assembly/assembly-otf.xml</descriptor>-->
                                 <descriptor>assembly/assembly-full.xml</descriptor>
