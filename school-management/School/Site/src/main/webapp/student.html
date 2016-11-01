@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Student</title>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src = "app-config.js"></script>
+	<script type="text/javascript" src = "class.js"></script>
+	<script type="text/javascript" src = "student.js"></script>
+</head>
+<body ng-app="student">
+		Students List :
+		<div ng-controller="studentController">
+			<div ng-repeat="student in students">
+				{{student.name}} , {{student.mobile}} , {{student.class.name}}
+				<button ng-click="editStudentDialog()">Edit</button>
+			</div>
+		</div>
+
+</body>
+</html>
